@@ -28,6 +28,8 @@ def add_author(obj, info, first_name, last_name):
 def delete_author(obj, info, id):
     author = Author.query.get(id)
     if author:
+        # ipdb.set_trace()
+
         db.session.delete(author)
         db.session.commit()
         return {'success': True, 'author': author}
