@@ -1,0 +1,33 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  authors: [Author]!
+  author(id: ID!): Author
+
+  books: [Book]!
+  book(id: ID!): Book
+}
+
+type Mutation {
+  update_first_name(id: ID!, name: String): Author
+}
+
+type Author {
+  id: ID!
+  first_name: String!
+  last_name: String!
+}
+
+type AuthorsQueryPayload {
+  success: String!
+  authors: [Author]
+}
+
+type Book {
+  id: ID!
+  pages: Int!
+  author_id: Int!
+}
