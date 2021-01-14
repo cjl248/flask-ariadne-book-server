@@ -32,6 +32,7 @@ type Mutation {
   delete_author(id: ID!): deleteAuthorPayload!
 
   add_book(title: String!, pages: Int!, author_id: Int!): addBookPayload
+  delete_book(id: ID!): deleteBookPayload
 }
 
 type newAuthorPayload {
@@ -49,6 +50,11 @@ type deleteAuthorPayload {
   author: Author
 }
 type addBookPayload {
+  success: Boolean!
+  book: Book
+}
+
+type deleteBookPayload{
   success: Boolean!
   book: Book
 }
