@@ -11,10 +11,6 @@ type Query {
   book(id: ID!): Book
 }
 
-type Mutation {
-  update_first_name(id: ID!, name: String): Author
-}
-
 type Author {
   id: ID!
   first_name: String!
@@ -22,14 +18,37 @@ type Author {
   books: [Book]!
 }
 
-type AuthorsQueryPayload {
-  success: Boolean
-  authors: [Author]
-}
-
 type Book {
   id: ID!
+  author: Author!
   title: String!
   pages: Int!
-  author_id: Int!
+}
+
+type Mutation {
+  add_author(first_name: String, last_name: String): newAuthorPayload!
+  update_first_name(id: ID!, name: String): updateNamePayload!
+  update_last_name(id: ID!, name: String): updateNamePayload!
+  delete_author(id: ID!): deleteAuthorPayload!
+
+  add_book(title: String!, pages: Int!, author_id: Int!): addBookPayload
+}
+
+type newAuthorPayload {
+  success: Boolean!
+  author: Author
+}
+
+type updateNamePayload {
+  success: Boolean!
+  author: Author
+}
+
+type deleteAuthorPayload {
+  success: Boolean!
+  author: Author
+}
+type addBookPayload {
+  success: Boolean!
+  book: Book
 }

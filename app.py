@@ -8,14 +8,26 @@ from api import author_model, book_model
 import api.author_resolver as author_resolver
 import api.book_resolver as book_resolver
 
+# Query Types #
 query = QueryType()
-mutation = MutationType()
 
 query.set_field('authors', author_resolver.resolve_authors)
 query.set_field('author', author_resolver.resolve_author)
 
 query.set_field('books', book_resolver.resolve_books)
+query.set_field('book', book_resolver.resolve_book)
 
+# Mutation Types #
+mutation = MutationType()
+mutation.set_field('add_author', author_resolver.add_author)
+mutation.set_field('delete_author', author_resolver.delete_author)
+mutation.set_field('update_first_name', author_resolver.update_first_name)
+mutation.set_field('update_last_name', author_resolver.update_last_name)
+
+mutation.set_field('add_book', book_resolver.add_book)
+
+# deleteAuthorPayload = ObjectType('deleteAuthorPayload')
+# newAuthorPayload = ObjectType('newAuthorPayload')
 
 type_defs = load_schema_from_path("schema.graphql")
 schema = make_executable_schema(
