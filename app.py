@@ -6,11 +6,15 @@ from flask import request, jsonify
 from api import app, db
 from api import author_model, book_model
 import api.author_resolver as author_resolver
+import api.book_resolver as book_resolver
 
 query = QueryType()
 mutation = MutationType()
 
 query.set_field('authors', author_resolver.resolve_authors)
+query.set_field('author', author_resolver.resolve_author)
+
+query.set_field('books', book_resolver.resolve_books)
 
 
 type_defs = load_schema_from_path("schema.graphql")
@@ -18,7 +22,7 @@ schema = make_executable_schema(
     type_defs,
     query,
     mutation,
-    snake_case_fallback_resolvers
+    # snake_case_fallback_resolvers
 )
 
 @app.route('/graphql', methods=['GET'])
