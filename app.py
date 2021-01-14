@@ -25,6 +25,7 @@ mutation.set_field('update_first_name', author_resolver.update_first_name)
 mutation.set_field('update_last_name', author_resolver.update_last_name)
 
 mutation.set_field('add_book', book_resolver.add_book)
+mutation.set_field('delete_book', book_resolver.delete_book)
 
 # deleteAuthorPayload = ObjectType('deleteAuthorPayload')
 # newAuthorPayload = ObjectType('newAuthorPayload')

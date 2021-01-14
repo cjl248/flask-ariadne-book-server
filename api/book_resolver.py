@@ -19,11 +19,20 @@ def resolve_book(obj, info, id):
 def add_book(obj, info, title, pages, author_id):
     author = Author.query.get(author_id)
     if not author:
-        return {'success': False, 'book': None}
+        return { 'success': False, 'book': None }
     book = Book(title=title, pages=pages, author_id=author_id)
     db.session.add(book)
     db.session.commit()
     if not book:
-        return {'success': False, 'book': None}
+        return { 'success': False, 'book': None }
     else:
-        return {'success': True, 'book': book}
+        return { 'success': True, 'book': book }
+
+def delete_book(obj, info, id):
+    book = Book.query.get(id)
+    if book:
+        db.session.delete(book)
+        db.session.commit()
+        return { 'success': True, 'book': book }
+    else:
+        return { 'success': False, 'book': None }
