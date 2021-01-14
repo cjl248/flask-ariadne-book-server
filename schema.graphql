@@ -19,15 +19,17 @@ type Author {
   id: ID!
   first_name: String!
   last_name: String!
+  books: [Book]!
 }
 
 type AuthorsQueryPayload {
-  success: String!
+  success: Boolean
   authors: [Author]
 }
 
 type Book {
   id: ID!
+  title: String!
   pages: Int!
   author_id: Int!
 }

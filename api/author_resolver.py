@@ -4,11 +4,13 @@ from .author_model import Author
 
 def resolve_authors(obj, info):
     try:
-        # ipdb.set_trace()
-        authors = [author for author in db.session.query(Author).all()]
-        # payload = { 'success': True, 'authors': authors }
-        return authors
+        return [author for author in db.session.query(Author).all()]
     except Exception as error:
-        # payload = { 'success': False, 'errors': str(error) }
         return []
-    # return payload
+
+def resolve_author(obj, info, id):
+    author = Author.query.get(id)
+    if author:
+        return author
+    else:
+        return None

@@ -16,7 +16,6 @@ class Author(db.Model):
     def set_first_name(self, new_name):
         self.first_name = new_name
 
-
     def get_last_name(self):
         return self.last_name
 
