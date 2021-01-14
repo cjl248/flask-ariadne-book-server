@@ -1,4 +1,5 @@
 from app import db
+from sqlalchemy.orm import relationship
 
 class Author(db.Model):
     __tablename__ = 'author'

@@ -1,5 +1,5 @@
 from app import db
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, backref
 
 class Book(db.Model):
 
@@ -10,7 +10,7 @@ class Book(db.Model):
         db.ForeignKey('author.id', ondelete='CASCADE'),
         nullable=False
     )
-    author = db.relationship('Author', backref='books')
+    author = db.relationship('Author', backref=backref('books', cascade="all, delete-orphan"))
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String)
     pages = db.Column(db.Integer)
