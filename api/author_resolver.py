@@ -28,8 +28,6 @@ def add_author(obj, info, first_name, last_name):
 def delete_author(obj, info, id):
     author = Author.query.get(id)
     if author:
-        # ipdb.set_trace()
-
         db.session.delete(author)
         db.session.commit()
         return {'success': True, 'author': author}
@@ -48,7 +46,6 @@ def update_first_name(obj, info, id, name):
     return
 
 def update_last_name(obj, info, id, name):
-    # TODO: update author first name
     author = Author.query.get(id)
     if author:
         author.set_last_name(name)
